@@ -73,7 +73,7 @@ class BitFinexReq():
 			self.data = list()
 			print "Data written to %s"%next_file
 		
-		elif datetime.now().second < 15 == 0:
+		else:
 			print "Process operating normally (%s)"%datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S")
 
 

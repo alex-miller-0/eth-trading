@@ -7,5 +7,4 @@ def write_csv(file, data, headers):
 		if headers: 
 			writer.writerow(headers)
 		for r in data:
-			print r
 			writer.writerow(list(r))
