@@ -36,10 +36,8 @@ class TradingAPI():
 	# Dump file every hour
 	# I basically just do this so I can run my db locally and don't have to rent out an RDS instance :P
 	def file_dump(self):
-		if datetime.now().minute == 0:
-			# Look through all .csv files in the datadir and find the max
-			next_n = 1 + max(map(lambda i: int(i[0:-4]), (os.listdir(DATA_DIR) or ["1.csv"])))
-			next_file = "%s/%s.csv"%(DATA_DIR, next_n)
+		if datetime.now().minute == 0 and datetime.now().second < 5:
+			next_file = "%s/%s.csv"%(DATA_DIR, int(time.time()))
 			
 			# Write the csv file into the data directory
 			file_util.write_csv(next_file, self.data, HEADERS)
@@ -47,9 +45,11 @@ class TradingAPI():
 			# Drain the data
 			self.data = list()
 			print "Data written to %s"%next_file
+		
 		elif datetime.now().second%10 == 0:
 			print "Process operating normally (%s)"%datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S")
-			
+
+
 	# Run this as a process
 	def execute(self):
 		while True:
