@@ -43,7 +43,7 @@ class BitFinexReq():
 			self.delay = 120
 			self.headers = ["type", "price", "amount", "timestamp"]
 		elif self.endpoint == "/v1/trades/ethbtc":
-			self.delay = 2
+			self.delay = 60
 			self.headers = ["type", "price", "amount", "timestamp", "tid", "exchange"]
 		else:
 			self.delay = 10
