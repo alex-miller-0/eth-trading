@@ -18,7 +18,6 @@ class BitFinexReq():
 	
 	# Set the endpoint. Default to /v1/pubticker/ETHBTC
 	def set_endpoint(self, kwargs):
-		print "kwargs: %s"%str(kwargs)
 		if "endpoint" in kwargs:
 			return kwargs["endpoint"]
 		else:
@@ -64,8 +63,7 @@ class BitFinexReq():
 	# Dump file every hour
 	# I basically just do this so I can run my db locally and don't have to rent out an RDS instance :P
 	def file_dump(self):
-		#if datetime.now().minute == 0 and datetime.now().second < 20:
-		if True:
+		if datetime.now().minute == 0 and datetime.now().second < 20:
 			next_file = "%s/%s.csv"%(self.data_dir, int(time.time()))
 			
 			# Write the csv file into the data directory
@@ -75,7 +73,7 @@ class BitFinexReq():
 			self.data = list()
 			print "Data written to %s"%next_file
 		
-		elif datetime.now().second < 11 == 0:
+		elif datetime.now().second < 15 == 0:
 			print "Process operating normally (%s)"%datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S")
 
 
@@ -84,7 +82,7 @@ class BitFinexReq():
 		while True:
 			self.make_request()
 			self.file_dump()
-			time.sleep(1)
+			time.sleep(10)
 
 
 

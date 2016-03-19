@@ -11,11 +11,8 @@ def stringify_ts(datum):
 
 # Assuming we have a flat array with headers that match
 def parse_bfx_flat(data, headers):
-	print "len(data): %s"%len(data)
 	new_data = map(lambda i: stringify_ts(i), data)
-	print "len(new_data): %s"%len(new_data)
 	parsed = map(lambda d: map(lambda h: d[h], headers), data)
-	print "len(parsed): %s"%len(parsed)
 	return parsed
 
 
