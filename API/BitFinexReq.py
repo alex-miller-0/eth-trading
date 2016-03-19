@@ -87,7 +87,7 @@ class BitFinexReq():
 	# Dump file every 100 iterations
 	# I basically just do this so I can run my db locally and don't have to rent out an RDS instance :P
 	def file_dump(self):
-		if self.iterations%1 == 0:
+		if self.iterations%100 == 0:
 
 			next_file = "%s/%s.csv"%(self.data_dir, int(time.time()))
 			
