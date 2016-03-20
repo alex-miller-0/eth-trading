@@ -24,7 +24,8 @@ def dump_files(sql_table, dir, map_func):
 			try:
 				mysql_util.query(form_insert_query(sql_table, cols, vals), con=con)
 			except Exception as e:
-				print "Exception raised: %s"%str(e)
+				if str(tuple(e)[0]) != "1062":				# Mysql error 1062 is for a duplicate entry and this will generate a lot
+					print "Exception raised: %s"%str(e)
 		
 		# Delete the file when we're done with it
 		os.remove(filepath)
@@ -37,8 +38,8 @@ def main():
 	# Load files with Bitfinex data into the db
 	print("Beginning Bitfinex dump...")
 	dump_files("BfxTicker", os.environ["ETH_BFX_TICKER_DATA"], mysql_util.map_ticker)
-	dump_files("BfxBook", os.environ["ETH_BFX_BOOK_DATA"], mysql_util.map_book)
 	dump_files("BfxTrades", os.environ["ETH_BFX_TRADES_DATA"], mysql_util.map_trades)
+	dump_files("BfxBook", os.environ["ETH_BFX_BOOK_DATA"], mysql_util.map_book)
 	print("Finished with Bitfinex dump.")
 
 if __name__=="__main__":

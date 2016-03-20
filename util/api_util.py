@@ -1,8 +1,9 @@
 # Utility functions for parsing API response data or doing other things related to the API
 from datetime import datetime
 
+##############################################################
 ## BITFINEX API
-################
+##############################################################
 
 # Turn a UNIX timestamp to a string of format YYYY-mm-dd HH:MM:SS
 def stringify_ts(datum):
@@ -28,3 +29,8 @@ def parse_bfx_book(data, headers):
 
 	# Now return the normal array
 	return parse_bfx_flat(new_data, headers)
+
+
+##############################################################
+## BITMEX API
+##############################################################

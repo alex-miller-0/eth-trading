@@ -1,2 +1,2 @@
 from BitFinexReq import BitFinexReq
-from PriceAPI import PriceAPI
+from BitMexReq import BitMexReq
