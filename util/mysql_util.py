@@ -31,6 +31,26 @@ def query(query, **kwargs):
 	return data
 
 
+## Functions for pulling data via SCP
+########################################
+# Unzip a datum into col names and values
+def unzip(d):
+	cols = list()
+	vals = list()
+	for k, v in d.iteritems():
+		cols.append(k)
+		vals.append(v)
+	return cols, vals
+
+# Stringify the columns to be inserted into the db
+def stringify_cols(cols):
+	col_str = "("
+	for c in cols:
+		col_str += "%s,"%c
+	return "%s) "%col_str[0:-1]
+########################################
+
+
 # BITFINEX-SQL MAPPINGS
 #============================================================
 def map_ticker(d):
@@ -79,6 +99,22 @@ def map_bitmex_price():
 		"price": "price",
 		"size": "size"
 	}
+
+# POLONIEX MAPPINGS
+#============================================================
+def map_polo_charts():
+	return {
+		"date":"date",
+		"high":"high",
+		"low":"low",
+		"open":"open",
+		"close":"close",
+		"volume":"volume",
+		"quoteVolume":"quoteVolume",
+		"weightedAverage": "weightedAverage"
+	}
+
+
 
 
 # GENERAL FUNCTIONS

@@ -2,7 +2,7 @@ import sys, os
 sys.path.append(os.path.realpath("%s/.."%os.path.dirname(__file__)))
 from datetime import datetime, timedelta
 import time
-from API import BitMexReq
+from API import BitMexReq, Poloniex
 
 
 
@@ -20,8 +20,8 @@ from API import BitMexReq
 #				price --> price of the trade
 #				size --> volume of the trade
 def main(arg):
-	BitMexReq(call=arg)
-
+	#BitMexReq(call=arg)
+	Poloniex(call=arg)
 
 
 if __name__=="__main__":
